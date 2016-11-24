@@ -1,7 +1,7 @@
 # coding: utf8
 import glob
 
-arquivos = glob.glob("./entrada/*.txt")
+arquivos = glob.glob("./entrada/*.xml")
 
 def adiciona_tag(entidade, texto, inicio):
     sub_texto_inicial = texto[:inicio+len(entidade)]
@@ -13,7 +13,15 @@ def adiciona_tag(entidade, texto, inicio):
     return texto
 
 
-bacias = ["Bacia do Paraná", "Bacia do Acre", "Bacia do Marajó", "Bacia do Jacaúnas"]
+with open("Bacias.txt") as bacias_arquivo:
+    bacias = bacias_arquivo.read()[:-1].split("\n")
+
+with open("Formacoes.txt") as formacoes_arquivo:
+    formacoes = formacoes_arquivo.read()[:-1].split("\n")
+
+with open("Granulometrias.txt") as granulometrias_arquivo:
+    granulometrias = granulometrias_arquivo.read()[:-1].split("\n")
+
 for arquivo in arquivos:
     with open(arquivo) as texto:
         texto = texto.read()
