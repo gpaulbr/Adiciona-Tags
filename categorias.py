@@ -39,6 +39,7 @@ def processa_categoria(texto, entidades, categoria=None):
             for entidade in entidades:    
                 if entidade in texto[inicio:(inicio+len(entidade))]:
                     texto = adiciona_tag(entidade, texto, inicio)
+                    break
     return texto
 
 
