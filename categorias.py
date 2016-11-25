@@ -4,14 +4,25 @@ import glob
 arquivos = glob.glob("./entrada/*.xml")
 
 def adiciona_tag(entidade, texto, inicio):
-    sub_texto_inicial = texto[:inicio+len(entidade)]
-    sub_texto_final = texto[inicio+len(entidade):]
-    texto = sub_texto_inicial + '</EM>' + sub_texto_final
-    sub_texto_inicial = texto[:inicio]
-    sub_texto_final = texto[inicio:]
-    texto = sub_texto_inicial + '<EM ID="' + arquivo[10:-4] + '" CATEG="granulometria">' + sub_texto_final
+    nome_arquivo = busca_nome_arquivo(texto, inicio)
+    if "Formação" in entidade:
+        nome_categoria = "formacao"
+    elif "Bacia" in entidade:
+        nome_categoria = "baciaSEDIMENTAR"
+    else:
+        nome_categoria = "granulometria"
+
+    texto = ''.join([texto[:inicio+len(entidade)], '</EM>', texto[inicio+len(entidade):]])
+    texto = ''.join([texto[:inicio], '<EM ID="', nome_arquivo, '" CATEG="', nome_categoria, '">', texto[inicio:]])
 
     return texto
+
+
+def busca_nome_arquivo(texto, inicio):
+    ini = texto.rfind('<DOC DOCID="', 0 , inicio) + 12
+    fim = texto.find('">', ini)
+    nome_arquivo = texto[ini:fim]
+    return nome_arquivo
 
 
 def encontra_todos(texto, categoria):
@@ -26,7 +37,6 @@ def encontra_todos(texto, categoria):
 def processa_categoria(texto, entidades, categoria=None):
     if categoria is None:
         for entidade in entidades:
-            print entidade
             lista = list(encontra_todos(texto, entidade))
             while len(lista) > 0:
                 texto = adiciona_tag(entidade, texto, lista.pop())
@@ -55,8 +65,7 @@ with open("Granulometrias.txt") as granulometrias_arquivo:
 for arquivo in arquivos:
     with open(arquivo) as texto:
         texto = texto.read()
-        for i in granulometrias:
-            print i
+
         texto = processa_categoria(texto, bacias, "Bacia ")
         texto = processa_categoria(texto, formacoes, "Formação ")
         texto = processa_categoria(texto, granulometrias)
