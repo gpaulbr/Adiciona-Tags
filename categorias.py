@@ -3,6 +3,7 @@ import glob
 
 arquivos = glob.glob("./entrada/*.xml")
 
+
 def adiciona_tag(entidade, texto, inicio):
     nome_arquivo = busca_nome_arquivo(texto, inicio)
     if "Formação" in entidade:
@@ -19,7 +20,7 @@ def adiciona_tag(entidade, texto, inicio):
 
 
 def busca_nome_arquivo(texto, inicio):
-    ini = texto.rfind('<DOC DOCID="', 0 , inicio) + 12
+    ini = texto.rfind('<DOC DOCID="', 0, inicio) + 12
     fim = texto.find('">', ini)
     nome_arquivo = texto[ini:fim]
     return nome_arquivo
@@ -46,7 +47,7 @@ def processa_categoria(texto, entidades, categoria=None):
         while len(lista) > 0:
             inicio = lista.pop()
             # print len(lista)
-            for entidade in entidades:    
+            for entidade in entidades:
                 if entidade in texto[inicio:(inicio+len(entidade))]:
                     texto = adiciona_tag(entidade, texto, inicio)
                     break
@@ -62,12 +63,17 @@ with open("Formacoes.txt") as formacoes_arquivo:
 with open("Granulometrias.txt") as granulometrias_arquivo:
     granulometrias = granulometrias_arquivo.read()[:-1].split("\n")
 
+print ("Dicionários criados")
+
 for arquivo in arquivos:
     with open(arquivo) as texto:
         texto = texto.read()
 
+        print ("Aciononando Tags de Bacia...")
         texto = processa_categoria(texto, bacias, "Bacia ")
+        print ("Aciononando Tags de Formação...")
         texto = processa_categoria(texto, formacoes, "Formação ")
+        print ("Aciononando Tags de Granulometria...")
         texto = processa_categoria(texto, granulometrias)
 
         file = open("./saida/" + arquivo[10:], 'w')
