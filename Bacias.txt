@@ -1,21 +1,33 @@
-Bacia de Antepaís 
-Bacia de Curitiba 
-Bacia de Campos 
-Bacia de Irecê 
-Bacia de Itajaí 
-Bacia do Itajaí 
-Bacia do Solimões 
-Bacia do Amazonas 
-Bacia do São Francisco 
-Bacia do Paraná 
-Bacia de Pelotas 
-Bacia de Santos 
-Bacia do Espírito Santo 
-Bacia de Mucuri 
-Bacia de Cumuruxatiba 
-Bacia de Jequitinhonha 
-Bacia do Recôncavo 
-Bacia de Sergipe 
-Bacia de Sergipe-Alagoas 
+Bacia de Antepaís
+Bacia de Curitiba
+Bacia de Campos
+Bacia de Irecê
+Bacia de Itajaí
+Bacia do Itajaí
+Bacia do Solimões
+Bacia do Amazonas
+Bacia do São Francisco
+Bacia do Paraná
+Bacia de Pelotas
+Bacia de Santos
+Bacia do Espírito Santo
+Bacia de Mucuri
+Bacia de Cumuruxatiba
+Bacia de Jequitinhonha
+Bacia do Recôncavo
+Bacia de Sergipe
+Bacia de Sergipe-Alagoas
 Bacia de Alagoas
-Bacia do Araripe 
+Bacia do Araripe
+Bacia Roraima
+Bacia Espinhaço
+Bacia do Parnaíba
+Bacia Bauru
+Bacia Açungui
+Bacia de Neuquén
+Bacia Potiguar
+Bacia do Grajaú
+Bacia de Puna
+Bacia de Castro
+Bacia do Espigão-Mestre
+Bacia do Camaquã
